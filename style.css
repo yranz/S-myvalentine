@@ -9,7 +9,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Envelope styles (unchanged) */
+/* Envelope & note-paper (unchanged) */
 .envelope {
     position: relative;
     width: 380px;
@@ -43,7 +43,7 @@ body {
     z-index: 5;
     transform-origin: top;
     transition: transform 0.7s ease;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
 }
 
 .note-paper {
@@ -53,7 +53,7 @@ body {
     border: 2px dashed #ffb6c1;
     border-radius: 14px;
     padding: 28px 20px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -123,7 +123,7 @@ button {
     inset: 0;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     z-index: 9999;
     overflow-y: auto;
 }
@@ -159,7 +159,7 @@ button {
     transform: rotate(90deg) scale(1.1);
 }
 
-/* Floating hearts (unchanged) */
+/* Floating hearts */
 .floating-hearts {
     position: absolute;
     inset: 0;
@@ -178,16 +178,21 @@ button {
 }
 
 @keyframes float {
-    0% { transform: translateY(110vh) rotate(0deg); }
-    100% { transform: translateY(-20vh) rotate(360deg); }
+    0% {
+        transform: translateY(110vh) rotate(0deg);
+    }
+
+    100% {
+        transform: translateY(-20vh) rotate(360deg);
+    }
 }
 
-/* Main content */
+/* Main content (text first) */
 .main-content {
     position: relative;
     z-index: 5;
     max-width: 900px;
-    margin: 60px auto 0;
+    margin: 0 auto 60px;
 }
 
 .main-content h2 {
@@ -197,73 +202,86 @@ button {
 
 .main-content p {
     font-size: 1.5rem;
-    margin-bottom: 40px;
 }
 
-/* Cute "Open Love Letter" button */
-.open-letter-btn {
-    padding: 18px 50px;
-    font-size: 1.6rem;
-    background: #ff4757;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.open-letter-btn:hover {
-    background: #e84118;
-    transform: scale(1.1);
-}
-
-/* Gallery with cute borders */
+/* Gallery: 3x3 grid with cute borders */
 .gallery-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
+    /* 3 columns */
     gap: 25px;
-    max-width: 1200px;
-    margin: 40px auto;
+    max-width: 1100px;
+    margin: 0 auto 80px;
     padding: 0 20px;
 }
 
 .gallery-item {
     position: relative;
     overflow: hidden;
-    border-radius: 20px;
-    border: 6px dashed #ff99ac; /* cute dashed pink border */
+    border-radius: 24px;
+    border: 5px solid #ff99ac;
+    /* solid pink base */
+    border-image: linear-gradient(to right, #ff99ac, #ffb6c1, #ff99ac) 1;
+    /* gradient border */
     background: #fff0f5;
-    padding: 8px;
-    box-shadow: 0 8px 25px rgba(255,105,180,0.4);
+    padding: 10px;
+    box-shadow: 0 10px 30px rgba(255, 105, 180, 0.4);
     transition: all 0.4s ease;
 }
 
 .gallery-item:hover {
-    transform: scale(1.08) rotate(2deg);
-    box-shadow: 0 15px 40px rgba(255,105,180,0.6);
+    transform: scale(1.06);
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.6);
     border-color: #ff4757;
 }
 
 .gallery-item img {
     width: 100%;
-    height: 280px;
+    height: 220px;
+    /* fixed height for uniform 3x3 look */
     object-fit: cover;
-    border-radius: 14px;
+    border-radius: 18px;
     display: block;
 }
 
 .gallery-item::after {
-    content: "💕";
+    content: "💖";
     position: absolute;
-    bottom: 15px;
-    right: 15px;
-    font-size: 2.5rem;
-    opacity: 0.8;
-    transition: opacity 0.3s;
+    bottom: 12px;
+    right: 12px;
+    font-size: 2.2rem;
+    opacity: 0.85;
 }
 
-.gallery-item:hover::after {
-    opacity: 1;
+/* Video at bottom with cute border */
+.video-container {
+    max-width: 800px;
+    margin: 0 auto 40px;
+    position: relative;
+    z-index: 5;
+}
+
+.video-container h3 {
+    font-size: 2.2rem;
+    color: #ff4757;
+    margin-bottom: 20px;
+}
+
+.video-container video {
+    width: 100%;
+    max-height: 500px;
+    border-radius: 24px;
+    border: 6px solid #ff99ac;
+    border-image: linear-gradient(to bottom, #ff99ac, #ffb6c1) 1;
+    box-shadow: 0 10px 35px rgba(255, 105, 180, 0.45);
+    background: #fff0f5;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.video-container video:hover {
+    border-color: #ff4757;
+    box-shadow: 0 15px 50px rgba(255, 105, 180, 0.6);
 }
 
 /* Love Letter Modal (unchanged) */
@@ -271,7 +289,7 @@ button {
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.65);
+    background: rgba(0, 0, 0, 0.65);
     z-index: 10000;
     justify-content: center;
     align-items: center;
@@ -288,7 +306,7 @@ button {
     border: 3px solid #ffb6c1;
     border-radius: 18px;
     padding: 50px 40px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.3), inset 0 0 30px rgba(255,182,193,0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3), inset 0 0 30px rgba(255, 182, 193, 0.4);
     font-family: 'Segoe Script', cursive, system-ui;
     color: #c71585;
     text-align: center;
@@ -342,5 +360,193 @@ button {
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Gallery updates for 3x3 */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    gap: 25px;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+@media (max-width: 900px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* wraps nicely on small screens */
+    }
+}
+
+/* Video container */
+.video-container {
+    max-width: 800px;
+    margin: 60px auto 80px;
+    text-align: center;
+}
+
+/* Cute video border */
+.cute-video {
+    width: 100%;
+    border-radius: 20px;
+    border: 6px dashed #ff99ac;
+    background: #fff0f5;
+    padding: 8px;
+    box-shadow: 0 8px 25px rgba(255,105,180,0.4);
+    transition: all 0.4s ease;
+}
+
+.cute-video:hover {
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(255,105,180,0.6);
+    border-color: #ff4757;
+}
+
+/* Flap video (maliit, looping, pink area) */
+.flap {
+    position: relative;
+    overflow: hidden;
+}
+
+.flap-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.6;
+    transition: opacity 0.5s ease;
+}
+
+.envelope:hover .flap-video {
+    opacity: 0;
+}
+
+/* Gallery – mas cute border */
+.gallery-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.gallery-item {
+    position: relative;
+    padding: 12px;
+    background: linear-gradient(135deg, #fff0f5, #ffe4e6);
+    border-radius: 24px;
+    border: 5px solid #ff99ac;
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.35);
+    transition: all 0.4s ease;
+}
+
+.gallery-item::before {
+    content: "💗";
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.8rem;
+    background: white;
+    padding: 4px 10px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    border-radius: 18px;
+    border: 3px dashed #ffb6c1;
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px) scale(1.04);
+    border-color: #ff4757;
+    box-shadow: 0 15px 35px rgba(255,105,180,0.5);
+}
+
+/* Cute Open Love Letter button */
+.open-letter-btn {
+    position: relative;
+    padding: 18px 50px;
+    font-size: 1.7rem;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff4757, #ff6699);
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(255, 71, 87, 0.5);
+    overflow: hidden;
+    transition: all 0.4s ease;
+}
+
+.open-letter-btn:hover {
+    transform: translateY(-4px) scale(1.08);
+    box-shadow: 0 15px 40px rgba(255, 71, 87, 0.7);
+}
+
+.open-letter-btn .heart-icon {
+    margin-left: 12px;
+    font-size: 1.9rem;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+}
+
+/* Video section – button first, video hidden */
+.video-section {
+    text-align: center;
+    margin: 70px auto 100px;
+    max-width: 800px;
+}
+
+.show-video-btn {
+    padding: 16px 60px;
+    font-size: 1.5rem;
+    background: #ff99ac;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(255,153,172,0.5);
+    transition: all 0.3s ease;
+}
+
+.show-video-btn:hover {
+    background: #ff6699;
+    transform: scale(1.1);
+}
+
+.cute-video {
+    display: none; /* nakatago muna */
+    width: 100%;
+    max-width: 720px;
+    margin-top: 30px;
+    border-radius: 24px;
+    border: 6px dashed #ff99ac;
+    padding: 10px;
+    background: #fff0f5;
+    box-shadow: 0 10px 30px rgba(255,105,180,0.4);
+}
+
+/* Show video pag na-click */
+.video-section.active .cute-video {
+    display: block;
+}
+
+.video-section.active .show-video-btn {
+    display: none;
+}
+
+.flap-video {
+    display: none;
 }

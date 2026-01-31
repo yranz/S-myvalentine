@@ -91,3 +91,39 @@ if (openLetterBtn && letterModal && letterClose) {
         letterModal.style.display = 'none';
     });
 }
+
+// ... lahat ng existing code mo (envelope, yes/no, modal, hearts) ...
+
+// Video show/hide
+const showVideoBtn = document.querySelector('.show-video-btn');
+const videoSection = document.querySelector('.video-section');
+const loveVideo = document.getElementById('loveVideo');
+
+if (showVideoBtn && videoSection && loveVideo) {
+    showVideoBtn.addEventListener('click', () => {
+        videoSection.classList.add('active');
+        // Optional: auto-play pag na-click
+        // loveVideo.play();
+    });
+}
+
+// Open Love Letter button
+
+
+if (openLetterBtn && letterModal && letterClose) {
+    openLetterBtn.addEventListener('click', () => {
+        letterModal.style.display = 'flex';
+    });
+
+    letterClose.addEventListener('click', () => {
+        letterModal.style.display = 'none';
+    });
+}
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('Service Worker registered'))
+      .catch(err => console.log('Service Worker failed', err));
+  });
+}
